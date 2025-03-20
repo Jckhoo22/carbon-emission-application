@@ -7,7 +7,7 @@ part of 'transportation_response_provider.dart';
 // **************************************************************************
 
 String _$transportationResponseStateHash() =>
-    r'6bf7eb439987cc7ee14047de1403d834a44dc3d3';
+    r'ead92eb5ffbca1c196124faf3e71c228abc34ef2';
 
 /// See also [TransportationResponseState].
 @ProviderFor(TransportationResponseState)

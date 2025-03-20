@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../Models/Request/transportation_request.dart';
-import '../../Models/Response/carbon_emission_response.dart';
-import '../../Services/api_service.dart';
+import '../../../Models/Request/transportation_request.dart';
+import '../../../Models/Response/carbon_emission_response.dart';
+import '../../../Services/api_service.dart';
 
 part 'transportation_response_provider.g.dart';
 

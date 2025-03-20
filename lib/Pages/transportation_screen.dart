@@ -7,8 +7,8 @@ import '../Constant/theme.dart';
 import '../Data/transportation/distance_unit.dart';
 import '../Data/transportation/fuel_type.dart';
 import '../Data/transportation/vehicle_type.dart';
-import '../Providers/request/transportation_request_provider.dart';
-import '../Providers/response/transportation_response_provider.dart';
+import '../Providers/request/transportation/transportation_request_provider.dart';
+import '../Providers/response/transportation/transportation_response_provider.dart';
 import 'Widget/calculate_button.dart';
 import 'Widget/custom_drop_down.dart';
 import 'Widget/skeleton_loading.dart';
@@ -110,7 +110,7 @@ class _TransportationScreenState extends ConsumerState<TransportationScreen> {
                         height: height,
                       ),
                     ],
-                  ), // Row
+                  ),
                   customDropdown(
                     labelText: "Vehicle Type",
                     items: VehicleType.values,
@@ -121,7 +121,6 @@ class _TransportationScreenState extends ConsumerState<TransportationScreen> {
                     width: width,
                     height: height,
                   ),
-
                   customDropdown(
                     labelText: "Fuel Type",
                     items: FuelType.values,

@@ -1,9 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../Data/transportation/distance_unit.dart';
-import '../../Data/transportation/fuel_type.dart';
-import '../../Data/transportation/vehicle_type.dart';
-import '../../Models/Request/transportation_request.dart';
+import '../../../Data/transportation/distance_unit.dart';
+import '../../../Data/transportation/fuel_type.dart';
+import '../../../Data/transportation/vehicle_type.dart';
+import '../../../Models/Request/transportation_request.dart';
 
 part 'transportation_request_provider.g.dart';
 

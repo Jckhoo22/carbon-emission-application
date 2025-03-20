@@ -17,4 +17,12 @@ abstract class ApiService {
     @Header("x-rapidapi-host") String apiHost,
     @Header("x-rapidapi-key") String apiKey,
   );
+
+  @POST("/electricity_estimate")
+  Future<CarbonEmissionResponse> estimateElectricityEmission(
+    @Body() TransportationRequest request,
+    @Header("Authorization") String bearerToken,
+    @Header("x-rapidapi-host") String apiHost,
+    @Header("x-rapidapi-key") String apiKey,
+  );
 }
