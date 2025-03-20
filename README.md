@@ -14,6 +14,7 @@ learnings! 🚀
 - **Date:** 20th March 2025 (Thursday)
 - **Time:** 1:00 PM – 5:00 PM (Malaysia Time)
 - **Venue:** S-08-02 @ APU Campus & Online (via Bevy)
+- https://boiling-printer-34f.notion.site/GDGOC-APU-Documentation-Flutter-Carbon-Emission-App-with-Retrofit-and-Riverpod-part-of-KitaHack-2-1b5aa6588c598013b538febf980bb03f
 
 ---
 
