@@ -59,7 +59,7 @@ class _ApiService implements ApiService {
 
   @override
   Future<CarbonEmissionResponse> estimateElectricityEmission(
-    TransportationRequest request,
+    ElectricityEstimateRequest request,
     String bearerToken,
     String apiHost,
     String apiKey,

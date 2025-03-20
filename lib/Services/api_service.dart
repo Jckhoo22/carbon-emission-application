@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:workshop/Models/Request/electricity_estimate_request.dart';
 
 import '../Models/Request/transportation_request.dart';
 import '../Models/Response/carbon_emission_response.dart';
@@ -20,7 +21,7 @@ abstract class ApiService {
 
   @POST("/electricity_estimate")
   Future<CarbonEmissionResponse> estimateElectricityEmission(
-    @Body() TransportationRequest request,
+    @Body() ElectricityEstimateRequest request,
     @Header("Authorization") String bearerToken,
     @Header("x-rapidapi-host") String apiHost,
     @Header("x-rapidapi-key") String apiKey,

@@ -23,7 +23,7 @@ Container emissionCard({
       child: Column(
         children: [
           Icon(
-            color: secondaryBlue,
+            color: iconColor,
             icon,
             size: 82,
           ), // Icon

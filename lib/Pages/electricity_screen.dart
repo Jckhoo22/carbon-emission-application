@@ -1,16 +1,26 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:workshop/Data/electricity/country_name.dart';
+import 'package:workshop/Data/electricity/electricity_unit.dart';
+import 'package:workshop/Providers/request/electricity/electricity_estimate_request_provider.dart';
+import 'package:workshop/Providers/response/electricity/electricity_response_provider.dart';
 
 import '../Constant/theme.dart';
+import 'Widget/calculate_button.dart';
+import 'Widget/custom_drop_down.dart';
+import 'Widget/emission_card.dart';
+import 'Widget/skeleton_loading.dart';
+import 'Widget/text_field.dart';
 
-class ElectricityScreen extends StatefulWidget {
+class ElectricityScreen extends ConsumerStatefulWidget {
   const ElectricityScreen({super.key});
 
   @override
-  State<ElectricityScreen> createState() => _ElectricityScreenState();
+  ConsumerState<ElectricityScreen> createState() => _ElectricityScreenState();
 }
 
-class _ElectricityScreenState extends State<ElectricityScreen> {
+class _ElectricityScreenState extends ConsumerState<ElectricityScreen> {
   late TextEditingController distanceValueController;
 
   @override
@@ -33,15 +43,15 @@ class _ElectricityScreenState extends State<ElectricityScreen> {
     double width = MediaQuery.of(context).size.width;
 
     // listen to API
-    final reqState = ref.watch(elec);
-    final resState = ref.watch(transportationResponseStateProvider);
-    final reqNotifier = ref.read(transportationRequestStateProvider.notifier);
-    final resNotifier = ref.read(transportationResponseStateProvider.notifier);
+    final reqState = ref.watch(electricityRequestStateProvider);
+    final resState = ref.watch(electricityResponseStateProvider);
+    final reqNotifier = ref.read(electricityRequestStateProvider.notifier);
+    final resNotifier = ref.read(electricityResponseStateProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Electricity Emissions"),
-        backgroundColor: primaryBlue,
+        title: const Text("Transportations Emissions"),
+        backgroundColor: primaryYellow,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -62,8 +72,8 @@ class _ElectricityScreenState extends State<ElectricityScreen> {
                       co2eLb: response?.co2eLb ?? 0,
                       co2eKg: response?.co2eKg ?? 0,
                       co2eMt: response?.co2eMt ?? 0,
-                      icon: CupertinoIcons.car,
-                      iconColor: secondaryBlue,
+                      icon: CupertinoIcons.bolt,
+                      iconColor: secondaryYellow,
                     ),
                     error: (errorText, stackTrace) => Text(
                       "Error: ${errorText.toString()}",
@@ -81,18 +91,20 @@ class _ElectricityScreenState extends State<ElectricityScreen> {
                     children: [
                       expandedTextField(
                         height: height,
-                        labelText: "Distance Traveled",
+                        labelText: "Electricity Used",
                         textController: distanceValueController,
                         onChanged: (value) {
-                          reqNotifier.updateDistanceValue(double.parse(value));
+                          reqNotifier
+                              .updateElectricityValue(double.parse(value));
                         },
                       ),
                       customDropdown(
-                        labelText: "Distance Unit",
-                        items: DistanceUnit.values,
-                        value: reqState.distanceUnit,
+                        labelText: "Electric Measurement Unit",
+                        items: ElectricityUnit.values,
+                        value: reqState.electricityUnit,
                         onChanged: (value) {
-                          reqNotifier.updateDistanceUnit(value as DistanceUnit);
+                          reqNotifier
+                              .updateElectricityUnit(value as ElectricityUnit);
                         },
                         width: width,
                         height: height,
@@ -100,21 +112,11 @@ class _ElectricityScreenState extends State<ElectricityScreen> {
                     ],
                   ),
                   customDropdown(
-                    labelText: "Vehicle Type",
-                    items: VehicleType.values,
-                    value: reqState.vehicleType,
+                    labelText: "Country",
+                    items: CountryName.values,
+                    value: reqState.countryName,
                     onChanged: (value) {
-                      reqNotifier.updateVehicleType(value as VehicleType);
-                    },
-                    width: width,
-                    height: height,
-                  ),
-                  customDropdown(
-                    labelText: "Fuel Type",
-                    items: FuelType.values,
-                    value: reqState.fuelType,
-                    onChanged: (value) {
-                      reqNotifier.updateFuelType(value as FuelType);
+                      reqNotifier.updateCountryName(value as CountryName);
                     },
                     width: width,
                     height: height,
@@ -122,9 +124,9 @@ class _ElectricityScreenState extends State<ElectricityScreen> {
                   calculateButton(
                     width: width,
                     height: height,
-                    btnColor: secondaryBlue,
+                    btnColor: primaryYellow,
                     onTap: () {
-                      resNotifier.calculateTransportationEmission(reqState);
+                      resNotifier.calculateElectricityEmission(reqState);
                     },
                   )
                 ],
